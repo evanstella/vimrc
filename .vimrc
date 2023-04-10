@@ -122,6 +122,8 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
+Plug 'jlanzarotta/bufexplorer'
+
 
 "*****************************************************************************
 "*****************************************************************************
@@ -397,9 +399,12 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " save
-nnoremap <C-w> :w<CR>
-inoremap <C-w> <ESC>:w<CR>i
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>i
 
+" undo
+nnoremap <C-z> u
+inoremap <C-z> <ESC>ui
 
 " tabs
 map <leader>tn :tabnew<cr>
@@ -408,22 +413,8 @@ map <leader>tm :tabmove
 map <leader>tc :tabclose<cr>
 map <leader>to :tabonly<cr>
 
-
-" buffers
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
+" buffer explorer
+noremap <Leader>be :BufExplorerVerticalSplit<CR>
 
 
 "" Finding stuff
@@ -459,7 +450,6 @@ if executable('rg')
 endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
@@ -660,3 +650,6 @@ endif
 
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_semantic_enabled = 1
+
+" disable terminal flow control
+call system("stty -ixon\n")
